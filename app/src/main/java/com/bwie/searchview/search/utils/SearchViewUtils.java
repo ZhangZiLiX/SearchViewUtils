@@ -113,21 +113,20 @@ public class SearchViewUtils extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.txt_search://点击搜索按钮
-                //判断非空
-                if(serachContent.equals("")){
-                    //提示
-                    Toast.makeText(getActivity(),"请输入搜索内容",Toast.LENGTH_SHORT).show();
-                    break;
-                }
-                boolean searchContent = mSearchSp.edit()
-                        .putString("searchContent", serachContent)
-                        .commit();
-                //将数据加入集合中
-                mList.add(new SearchContentBean(serachContent));
-                mSearchAdapter.notifyDataSetChanged();
-                break;
+        int i = v.getId();
+        if (i == R.id.txt_search) {//判断非空
+            if (serachContent.equals("")) {
+                //提示
+                Toast.makeText(getActivity(), "请输入搜索内容", Toast.LENGTH_SHORT).show();
+                
+            }
+            boolean searchContent = mSearchSp.edit()
+                    .putString("searchContent", serachContent)
+                    .commit();
+            //将数据加入集合中
+            mList.add(new SearchContentBean(serachContent));
+            mSearchAdapter.notifyDataSetChanged();
+
         }
     }
 
